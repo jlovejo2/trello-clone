@@ -1,5 +1,5 @@
 import { Card } from "./Card"
-import { ColumnContainer, ColumnTitle, CardContainer } from "./styles"
+import { ColumnContainer, ColumnTitle } from "./styles"
 
 type ColumnProps = {
     text: string
