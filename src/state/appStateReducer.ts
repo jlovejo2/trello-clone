@@ -40,5 +40,8 @@ export const appStateReducer = (
             })
             break
         }
+        default: {
+            break
+        }
     }
 }
