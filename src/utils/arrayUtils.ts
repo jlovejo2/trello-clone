@@ -10,7 +10,7 @@ export const findItemIndexById = <TItem extends Item>(
 }
 
 export function removeItemAtIndex<TItem>( array: TItem[], index: number) {
-    return [...array.slice(0,index), array.slice(index + 1)]
+    return [...array.slice(0,index), ...array.slice(index + 1)]
 }
 
 export function insertItemAtIndex<TItem>( array: TItem[], index: number, item: TItem) {
@@ -19,5 +19,5 @@ export function insertItemAtIndex<TItem>( array: TItem[], index: number, item: T
 
 export const moveItem = <TItem>( array: TItem[], from: number, to: number) => {
     const item = array[from];
-    return insertItemAtIndex(removeItemAtIndex(array, from), to, item)
+    return insertItemAtIndex(removeItemAtIndex(array, from), to, item);
 }
