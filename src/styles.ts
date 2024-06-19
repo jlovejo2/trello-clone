@@ -2,10 +2,18 @@ import styled from "styled-components";
 
 interface DragPreviewContainerProps {
     isHidden?: boolean
+    isPreview?: boolean
 }
 
 type AddItemButtonProps = {
     dark?: boolean
+}
+
+type DragPreviewWrapperProps = {
+    position: {
+        x: number
+        y: number
+    }
 }
 
 export const Appcontainer = styled.div`
@@ -18,7 +26,8 @@ export const Appcontainer = styled.div`
     width: 100%;
 `
 export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
-    opacity: ${(props) => (props.isHidden ? 0.3 : 1)};
+    opacity: ${(props) => (props.isHidden ? 0 : 1)};
+    transform: ${(props) => props.isPreview ? "rotate(5deg)" : undefined};
 `
 
 export const ColumnContainer = styled(DragPreviewContainer)`
@@ -45,6 +54,17 @@ export const CardContainer = styled(DragPreviewContainer)`
     border-radius: 3px;
     box-shadow: #091e4240 0px 1px 0px 0px;
 `
+
+export const CustomDragLayerContainer = styled.div`
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+`
+
 export const AddItemButton = styled.button<AddItemButtonProps>`
     background-color: #ffffff3d;
     border-radius: 3px;
@@ -60,6 +80,14 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
         background-color: #ffffff52;
     }
 `
+// using the attrs assigns the styles to the attribute to our component instead of generating a new class for every position change
+export const DragPreviewWrapper = styled.div.attrs<DragPreviewWrapperProps>(
+    ({ position: { x, y }}) => ({
+        style: {
+            transform: `translate(${x}px, ${y}px)`
+        }
+    })
+)<DragPreviewWrapperProps>``
 
 export const NewItemFormContainer = styled.div`
     max-width: 300px;
