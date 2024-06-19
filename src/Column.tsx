@@ -7,12 +7,12 @@ import { addTask, moveList } from "./state/actions"
 import { ColumnContainer, ColumnTitle } from "./styles"
 import { useItemDrag } from "./utils/useItemDrag";
 import { throttle } from "./utils/throttle";
+import { isHidden } from "./utils/isHidden";
 
 type ColumnProps = {
     text: string
     id: string
 }
-
 
 export const Column = ({ text, id }: ColumnProps) => {
     const { draggedItem, getTasksByListId, dispatch } = useAppState();
@@ -34,7 +34,7 @@ export const Column = ({ text, id }: ColumnProps) => {
     drag(drop(ref));
 
     return (
-        <ColumnContainer ref={ref}>
+        <ColumnContainer ref={ref} isHidden={isHidden(draggedItem, "COLUMN", id)}>
             <ColumnTitle> { text } </ColumnTitle>
             {tasks.map((task): any => {
                 return <Card text={task.text} key={task.id} id={task.id} />
