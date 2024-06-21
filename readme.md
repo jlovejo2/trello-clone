@@ -8,3 +8,6 @@
 
 #### Trello Backend 
 - is a simplified backend api that only has a few endpoints for trello clone to interact with
+
+- When Both are running the state will persist on page refresh and user can add tasks, lists, and move them around.
+- Data is not saved in a database at this point.
